@@ -17,6 +17,15 @@ Host-only plugin: every six hours it rewrites the `openrouter` provider models i
 Enabling the bundle mounts the plugin; HMR applies it to a running app, and a
 restart makes sure the client half is rebuilt.
 
+## Where the key comes from
+
+The host half resolves `OPENROUTER_API_KEY` through the harness credential
+service first, then the process environment, then
+`~/.dsh/.credentials.yaml`; with no key it still lists the provider's models only
+when configured — the sync itself is skipped. Nothing plugin-specific to set up
+beyond the OpenRouter provider (or an `OPENROUTER_API_KEY` entry in the
+credential store / environment layers).
+
 ## Development
 
 `lib/` is built and committed; the sources live in `src/`. Rebuild the client with
