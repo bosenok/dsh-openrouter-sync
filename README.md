@@ -17,6 +17,13 @@ Host-only plugin: every six hours it rewrites the `openrouter` provider models i
 Enabling the bundle mounts the plugin; HMR applies it to a running app, and a
 restart makes sure the client half is rebuilt.
 
+> Note for the app-managed `desktop` profile: `dsh plugin --profile desktop add`
+> only installs the dependency and copies the package; unlike a regular profile
+> it does not enable the bundle. Enable it by adding the package name to
+> `dsh.profile.bundles` in `~/.dsh/profiles/desktop/package.json` (or through the
+> Plugins page). Other profiles enable the installed bundle automatically.
+
+
 ## Where the key comes from
 
 The host half resolves `OPENROUTER_API_KEY` through the harness credential
