@@ -1,0 +1,33 @@
+# Overlay: OpenRouter free-tier models as a DSH provider route.
+#
+# Use as an extra patch layer, without touching your desktop profile:
+#   dsh --profile headless --patch ./dsh-openrouter-free.overlay.yml "your task"
+#
+# Key resolution: the route references OPENROUTER_API_KEY through the harness
+# credential seam, so it is read from ~/.dsh/.credentials.yaml (refs:) or the
+# process environment. No secret is stored in this file.
+#
+# Free slugs rotate: OpenRouter retires ":free" variants over time. Check a model
+# before relying on it, and refresh this list from the Models settings page
+# ("Fetch available models") when one starts failing with 404/403.
+
+- id: llm-pi-ai
+  name: "@deepseek-ai/dsh-llm-pi-ai"
+  config:
+    providers:
+      openrouter:
+        displayName: OpenRouter (free models)
+        apiKeyEnv: OPENROUTER_API_KEY
+        models:
+          - id: "nvidia/nemotron-3-super-120b-a12b:free"
+          - id: "nvidia/nemotron-3.5-lightning:free"
+          - id: "cohere/north-mini-code:free"
+          - id: "poolside/laguna-s-2.1:free"
+          - id: "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free"
+          - id: "liquid/lfm-2.5-2.6b:free"
+
+- id: agent-default-model
+  name: "@deepseek-ai/dsh-agent-default-model"
+  config:
+    provider: openrouter
+    model: "nvidia/nemotron-3-super-120b-a12b:free"

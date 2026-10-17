@@ -1,0 +1,13 @@
+{
+  "name": "dsh-openrouter-sync",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Keeps the DSH `openrouter` provider's model list in sync with OpenRouter's currently-free models",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "license": "MIT"
+}
